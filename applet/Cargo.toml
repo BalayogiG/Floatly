@@ -1,0 +1,17 @@
+[package]
+name = "floatly-applet"
+version = "0.1.0"
+edition = "2021"
+description = "A tiny charm that hangs and swings in the COSMIC panel"
+
+[dependencies]
+env_logger = "0.11"
+log = "0.4"
+
+[dependencies.libcosmic]
+git = "https://github.com/pop-os/libcosmic"
+default-features = false
+features = ["applet"]
+
+[profile.release]
+lto = true

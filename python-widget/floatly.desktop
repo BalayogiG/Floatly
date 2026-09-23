@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Floatly
+Comment=Tiny digital charms that hang and swing on your screen
+Exec=/home/balayogi/Projects/Floatly/run.sh
+Icon=applications-graphics
+Terminal=false
+Categories=Utility;
+X-GNOME-Autostart-enabled=true

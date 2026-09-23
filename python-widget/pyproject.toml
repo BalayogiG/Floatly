@@ -1,0 +1,19 @@
+[project]
+name = "floatly"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Balayogi G", email = "balayogistark@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pyside6>=6.11.2",
+]
+
+[project.scripts]
+floatly = "floatly:main"
+floatly-settings = "floatly.settings_app:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
