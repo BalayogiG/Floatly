@@ -3,7 +3,7 @@
 A tiny charm that hangs from the top of your screen on a rope and gently
 swings — a small delight, right on your Linux desktop.
 
-[Watch the demo video](docs/swing-demo.mp4)
+<video src="docs/swing-demo.mp4" controls width="480"></video>
 
 It sways on its own like a wind chime (a damped pendulum with the occasional
 random "air current"), reacts to a click with a little push, and can be
