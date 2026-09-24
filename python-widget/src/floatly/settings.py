@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from .config import Config, quit_running_widget
+from .config import Config, is_widget_running, quit_running_widget, start_widget
 
 IMAGE_FILTER = "Images (*.png *.jpg *.jpeg *.svg *.webp *.gif)"
 
@@ -107,6 +107,10 @@ class SettingsDialog(QDialog):
         buttons.rejected.connect(self.close)
         buttons.accepted.connect(self.close)
 
+        start_btn = QPushButton("Start Floatly")
+        start_btn.clicked.connect(self._start_widget)
+        buttons.addButton(start_btn, QDialogButtonBox.ButtonRole.ActionRole)
+
         quit_btn = QPushButton("Quit Floatly")
         quit_btn.clicked.connect(self._quit_widget)
         buttons.addButton(quit_btn, QDialogButtonBox.ButtonRole.DestructiveRole)
@@ -145,6 +149,12 @@ class SettingsDialog(QDialog):
         config = self._current_config()
         config.save()
         self._on_apply(config)
+
+    def _start_widget(self) -> None:
+        if is_widget_running():
+            QMessageBox.information(self, "Floatly", "Floatly is already running.")
+            return
+        start_widget()
 
     def _quit_widget(self) -> None:
         found = quit_running_widget()

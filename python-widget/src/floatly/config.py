@@ -5,11 +5,13 @@ from __future__ import annotations
 import json
 import os
 import signal
+import subprocess
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 CONFIG_PATH = Path.home() / ".config" / "floatly" / "config.json"
 PID_PATH = Path.home() / ".config" / "floatly" / "widget.pid"
+RUN_SCRIPT = Path(__file__).resolve().parents[2] / "run.sh"
 
 DEFAULT_SHAPE = "star"
 DEFAULT_COLOR = "#FFB6C1"
@@ -56,4 +58,28 @@ def quit_running_widget() -> bool:
         os.kill(pid, signal.SIGTERM)
     except (ValueError, ProcessLookupError, PermissionError):
         return False
+    return True
+
+
+def is_widget_running() -> bool:
+    if not PID_PATH.exists():
+        return False
+    try:
+        pid = int(PID_PATH.read_text().strip())
+        os.kill(pid, 0)
+    except (ValueError, ProcessLookupError, PermissionError):
+        return False
+    return True
+
+
+def start_widget() -> bool:
+    """Launch the widget if it isn't already running. Returns whether it was started."""
+    if is_widget_running():
+        return False
+    subprocess.Popen(
+        ["bash", str(RUN_SCRIPT)],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        start_new_session=True,
+    )
     return True
