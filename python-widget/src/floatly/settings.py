@@ -74,6 +74,9 @@ class SettingsDialog(QDialog):
         self.length_control = _SliderSpin(20, 800, int(config.rope_length), " px")
         self.length_control.valueChanged.connect(self._live_apply)
 
+        self.size_control = _SliderSpin(12, 160, int(config.charm_size), " px")
+        self.size_control.valueChanged.connect(self._live_apply)
+
         self.click_through_check = QCheckBox(
             "Disable interaction entirely (by default, only the rope and charm\n"
             "itself are clickable — everywhere else already click-through)"
@@ -95,6 +98,7 @@ class SettingsDialog(QDialog):
         form = QFormLayout()
         form.addRow("Horizontal position:", self.x_control)
         form.addRow("Rope length:", self.length_control)
+        form.addRow("Charm size:", self.size_control)
         form.addRow("Charm image:", self.image_label)
         form.addRow("", image_buttons)
         form.addRow("", self.click_through_check)
@@ -132,6 +136,7 @@ class SettingsDialog(QDialog):
     def _current_config(self) -> Config:
         self.config.x = self.x_control.value()
         self.config.rope_length = float(self.length_control.value())
+        self.config.charm_size = float(self.size_control.value())
         self.config.image_path = self._image_path
         self.config.click_through = self.click_through_check.isChecked()
         return self.config

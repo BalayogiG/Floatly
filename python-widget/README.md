@@ -37,6 +37,7 @@ The dialog has sliders for:
 
 - **Horizontal position** — where along the top edge the rope hangs
 - **Rope length**
+- **Charm size** — how big the charm (drawn shape or custom image) renders
 
 plus a **Charm image** picker (any image file, or revert to the default
 drawn star), a checkbox to disable interaction entirely (the rope stops

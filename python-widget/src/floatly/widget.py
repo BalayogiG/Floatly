@@ -65,13 +65,14 @@ class CharmWidget(QWidget):
     # -- construction from config -----------------------------------------------------
     def _build_charm(self) -> Charm:
         image = None
-        size = 28.0
+        size = self.config.charm_size
         if self.config.image_path:
             pixmap = QPixmap(self.config.image_path)
             if not pixmap.isNull():
+                target = int(self.config.charm_size)
                 image = pixmap.scaled(
-                    48,
-                    48,
+                    target,
+                    target,
                     Qt.AspectRatioMode.KeepAspectRatio,
                     Qt.TransformationMode.SmoothTransformation,
                 )

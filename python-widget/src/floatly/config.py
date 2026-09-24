@@ -20,6 +20,7 @@ class Config:
     x: int = 200  # horizontal position of the rope's anchor, in screen pixels from the left
     rope_length: float = 160.0
     image_path: str | None = None  # custom charm image; None falls back to a drawn shape
+    charm_size: float = 40.0  # max dimension in px, for both the drawn shape and a custom image
     shape: str = DEFAULT_SHAPE
     color: str = DEFAULT_COLOR
     click_through: bool = False
